@@ -31,8 +31,10 @@
                 echo json_encode($arr);
             exit(0);
         }
-        if($name == "" || $email == "" ||  $subject = "" || $msg == ""){
-            $arr = array ('status'=>'erro','msg'=>'please enter all values ');
+        if(empty($name) || empty($email) ||  empty($subject) || empty($msg)){
+            $arr = array ('status'=>'erro','text'=>'please enter all values ');
+	    echo json_encode($arr);
+	    exit(0);
         }
 
         $query = "INSERT INTO whocontactmeinfo (CONT_NAME ,CONT_EMAIL , SUBJECT , MESSAGE) VALUES ('". $name ."', '".$email."', '".$subject_val ."', '".$msg."')";
@@ -55,7 +57,6 @@
         $arr = array ('query'=>$query ,'status'=>'success','text'=>'Thank you for your time. Message sent successfully');
         echo json_encode($arr);
         exit(0);
-	break;
 	
 }
 
