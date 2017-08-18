@@ -242,15 +242,15 @@
 
 })(jQuery);
 
-$("#sendMsg").click(function(e){
-    alert("form clicked");
-    var formObj = $("contactform");
-    $(formObj).submit(function(){
-    $.post($(this).attr('action'), $(this).serialize(), function(json) {
-      alert("received "+json);
-      alert(JSON.stringify(json));
-    }, 'json');
-    return false;
+$(function(){
+  $('#contactform').submit(function(){
+        alert("form clicked");
+        $.post($(this).attr('action'), $(this).serialize(), function(json) {
+	  if(json["status"] == "success"){
+	     $('#contactform')[0].reset();
+	  }
+          alert(JSON.stringify(json["text"]));
+        }, 'json');
+        return false;
   });
-                    
-})
+});

@@ -6,19 +6,24 @@
     $port = "3306";
     switch ($_SERVER['REQUEST_METHOD']){
       case 'POST':
+	  //  echo "response";
+	//	exit();
             $contactername = $_POST["name"];
             $email = $_POST["email"];
             $subject = $_POST["subject"];
             $msg = $_POST["message"];
-            addcontactordetails($contactername,$email,$subject,$msg)
+            addcontactordetails($contactername, $email, $subject , $msg);
+	    break;
+      case 'GET':
+	    echo "inside getter";
+    }
             
-    function addcontactordetails($name,$email,$subject,$msg){
+    function addcontactordetails($name, $email, $subject_val, $msg){
         global $servername ;
         global $username;
         global $password;
         global $dbname;
         global $port;
-
         $mysqli = new mysqli($servername,$username , $password, $dbname);
         mysqli_set_charset( $mysqli, 'utf8' );
         if (mysqli_connect_errno()) {
@@ -30,8 +35,7 @@
             $arr = array ('status'=>'erro','msg'=>'please enter all values ');
         }
 
-
-        $query = "INSERT INTO whocontactmeinfo (CONT_NAME ,CONT_EMAIL , SUBJECT , MESSAGE) VALUES ('". $name ."', '".$email."', '".$subject."', '".$msg."')";
+        $query = "INSERT INTO whocontactmeinfo (CONT_NAME ,CONT_EMAIL , SUBJECT , MESSAGE) VALUES ('". $name ."', '".$email."', '".$subject_val ."', '".$msg."')";
 
         //echo $query;
 
@@ -48,9 +52,11 @@
 
         $mysqli->close();
 
-        $arr = array ('status'=>'success','msg'=>'data submitted successfully');
+        $arr = array ('query'=>$query ,'status'=>'success','text'=>'Thank you for your time. Message sent successfully');
         echo json_encode($arr);
         exit(0);
+	break;
+	
 }
 
     
