@@ -31,7 +31,7 @@
                 echo json_encode($arr);
             exit(0);
         }
-        if(empty($name) || empty($email) ||  empty($subject) || empty($msg)){
+        if(empty($name) || empty($email) ||  empty($subject_val) || empty($msg)){
             $arr = array ('status'=>'erro','text'=>'please enter all values ');
 	    echo json_encode($arr);
 	    exit(0);
