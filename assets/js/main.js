@@ -244,7 +244,6 @@
 
 $(function(){
   $('#contactform').submit(function(){
-        alert("form clicked");
         $.post($(this).attr('action'), $(this).serialize(), function(json) {
 	  if(json["status"] == "success"){
 	     $('#contactform')[0].reset();
