@@ -54,7 +54,7 @@
 
         $mysqli->close();
 
-        $arr = array ('query'=>$query ,'status'=>'success','text'=>'Thank you for your time. Message sent successfully');
+        $arr = array ('status'=>'success','text'=>'Thank you for your time. Message sent successfully');
         echo json_encode($arr);
         exit(0);
 	
